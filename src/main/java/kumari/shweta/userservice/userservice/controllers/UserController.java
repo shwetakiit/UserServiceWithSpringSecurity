@@ -6,9 +6,7 @@ import kumari.shweta.userservice.userservice.dtos.SignUpRequestDTO;
 import kumari.shweta.userservice.userservice.dtos.UserDTO;
 import kumari.shweta.userservice.userservice.models.Token;
 import kumari.shweta.userservice.userservice.models.User;
-import kumari.shweta.userservice.userservice.repositories.TokenRepository;
 import kumari.shweta.userservice.userservice.services.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 public class UserController {
 
-    private  TokenRepository tokenRepository;
     private UserService userService;
-    UserController(UserService userService, TokenRepository tokenRepository){
+    UserController(UserService userService){
         this.userService = userService;
-        this.tokenRepository = tokenRepository;
     }
 
     @PostMapping("/signup")
@@ -35,21 +31,17 @@ public class UserController {
         return UserDTO.fromUser(user);
     }
 
-    @PostMapping("/login")
-    public Token login(@RequestBody LoginRequestDTO requestDTO){
-      Token token=  userService.login(requestDTO.getEmail(),requestDTO.getPassword());
-        return token;
+    public Token loin(LoginRequestDTO requestDTO){
+        return null;
     }
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@RequestBody  LogOutRequestDTO logOutRequestDTO){
-       userService.logOut(logOutRequestDTO.getToken());
-       return new ResponseEntity<>(HttpStatus.OK);
+        return null;
     }
 
-    @GetMapping("/validate/{token}")
+    @PostMapping("/validate/{token}")
     public UserDTO    validateToken(@PathVariable String token){
-        User user = userService.validateToken(token);
-        return UserDTO.fromUser(user);
+return null;
     }
 
     @GetMapping("/users/{id}")
