@@ -15,6 +15,7 @@ public class Token extends  BaseModel{
     @ManyToOne
     private User user;
     private Date expiry;
+    boolean deleted;
 
 
 }

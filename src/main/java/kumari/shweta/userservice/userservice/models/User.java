@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @Entity
 public class User extends BaseModel {
+    private Long id;
     private String name;
     private String hashedpassword;
     private String email;
